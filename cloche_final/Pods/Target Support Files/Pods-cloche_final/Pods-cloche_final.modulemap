@@ -1,0 +1,6 @@
+framework module Pods_cloche_final {
+  umbrella header "Pods-cloche_final-umbrella.h"
+
+  export *
+  module * { export * }
+}
