@@ -144,7 +144,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
         self.dividerBottom.heightAnchor.constraint(equalToConstant: 1).isActive = true
         self.dividerBottom.topAnchor.constraint(equalTo: self.filterCollectionView.bottomAnchor, constant: 5).isActive = true
         
-        self.topsCollectionView.view.frame = CGRect(x: 24, y: 300, width: self.view.frame.width-48, height: self.view.frame.height)
+        self.topsCollectionView.view.frame = CGRect(x: 24, y: 260, width: self.view.frame.width-48, height: self.view.frame.height)
     }
     
     func configureTopCollectionView(){

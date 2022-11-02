@@ -63,7 +63,7 @@ class TopsCollectionViewController: UIViewController, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width-24)/2,  height: 250)
+        return CGSize(width: (collectionView.frame.width-24)/2,  height: 240)
     }
     
     let sampleItemList =
