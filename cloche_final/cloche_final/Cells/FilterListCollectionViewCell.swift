@@ -7,11 +7,10 @@
 
 import UIKit
 
-///cell for filtering the list view
+///cell for showing item/outfit in collection view
 class FilterListCollectionViewCell: UICollectionViewCell {
     var itemImage = UIImageView()
     var likeButton = UIButton()
-    
     
     override var reuseIdentifier: String {
         return "FilterListCollectionViewCell"
@@ -34,7 +33,7 @@ class FilterListCollectionViewCell: UICollectionViewCell {
     }
     
     public func configureDesign(imageName: String, liked: Bool){
-        self.itemImage.image = UIImage(named: "imageName")
+        self.itemImage.image = UIImage(named: imageName)
         if (liked){
             self.likeButton.isSelected = true
         }else {
@@ -48,6 +47,8 @@ class FilterListCollectionViewCell: UICollectionViewCell {
         self.itemImage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
         self.itemImage.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         self.itemImage.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
+        self.itemImage.layer.masksToBounds = true
+        self.itemImage.setupCornerRadius(20)
         
         self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)

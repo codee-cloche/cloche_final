@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65728BE829121E1B004504D6 /* UNDERRATED.otf in Resources */ = {isa = PBXBuildFile; fileRef = 65728BE729121E0E004504D6 /* UNDERRATED.otf */; };
+		65728BEA291232CE004504D6 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65728BE9291232CE004504D6 /* ItemDetailViewController.swift */; };
 		65817DE4290F979B0099ED84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65817DE3290F979B0099ED84 /* AppDelegate.swift */; };
 		65817DE6290F979B0099ED84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65817DE5290F979B0099ED84 /* SceneDelegate.swift */; };
 		65817DE8290F979B0099ED84 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65817DE7290F979B0099ED84 /* CustomTabBarController.swift */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		144E4D7F94D10C1F55EF2D63 /* Pods-cloche_final.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cloche_final.release.xcconfig"; path = "Target Support Files/Pods-cloche_final/Pods-cloche_final.release.xcconfig"; sourceTree = "<group>"; };
 		55C3E92FB874AE4D320F1B9D /* Pods_cloche_final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cloche_final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65728BE729121E0E004504D6 /* UNDERRATED.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = UNDERRATED.otf; sourceTree = "<group>"; };
+		65728BE9291232CE004504D6 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		65817DE0290F979B0099ED84 /* cloche_final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cloche_final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65817DE3290F979B0099ED84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65817DE5290F979B0099ED84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				65817E09290F9A090099ED84 /* AddViewController.swift */,
 				65817E0B290F9A130099ED84 /* FavoritesViewController.swift */,
 				65817E0E290F9A210099ED84 /* ProfileViewController.swift */,
+				65728BE9291232CE004504D6 /* ItemDetailViewController.swift */,
 			);
 			path = "Main ";
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 		65817E24290FE8D50099ED84 /* Custom Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				65728BE729121E0E004504D6 /* UNDERRATED.otf */,
 				65817E25290FE8ED0099ED84 /* Montserrat-Italic-VariableFont_wght.ttf */,
 				65817E26290FE8ED0099ED84 /* Montserrat-VariableFont_wght.ttf */,
 			);
@@ -301,6 +307,7 @@
 				65817DF0290F979D0099ED84 /* LaunchScreen.storyboard in Resources */,
 				65817DED290F979D0099ED84 /* Assets.xcassets in Resources */,
 				65817E2A290FEA9E0099ED84 /* Montserrat-VariableFont_wght.ttf in Resources */,
+				65728BE829121E1B004504D6 /* UNDERRATED.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +380,7 @@
 				65817E1A290FA3430099ED84 /* DressCollectionViewController.swift in Sources */,
 				65817DE4290F979B0099ED84 /* AppDelegate.swift in Sources */,
 				65817E02290F992D0099ED84 /* CustomTabBar.swift in Sources */,
+				65728BEA291232CE004504D6 /* ItemDetailViewController.swift in Sources */,
 				65817DE6290F979B0099ED84 /* SceneDelegate.swift in Sources */,
 				65817E332910DAA80099ED84 /* Outfit.swift in Sources */,
 				65817E04290F99490099ED84 /* Extensions.swift in Sources */,

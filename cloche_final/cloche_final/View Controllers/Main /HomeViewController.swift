@@ -66,25 +66,33 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     func configureHeaders(){
         self.logoTitle.text = "CLOCHE"
         self.logoTitle.textColor = .black
-        self.logoTitle.font =  UIFont.systemFont(ofSize: 20, weight: .bold)
+        self.logoTitle.font = UIFont(name: "UNDERRATED", size: 22)
         self.logoTitle.translatesAutoresizingMaskIntoConstraints = false
         self.logoTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24).isActive = true
-        self.logoTitle.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        self.logoTitle.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60).isActive = true
         
     }
     
     func configureSearchBar(){
-        self.searchBar.placeholder = "색상, 브랜드, 검색하고 싶은 옷의 종류를 검색해보세요!"
+        self.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "👚 색상, 브랜드, 키워드를 검색해보세요! 👚", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light)])
         self.searchBar.translatesAutoresizingMaskIntoConstraints = false
-        self.searchBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24).isActive = true
-        self.searchBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -24).isActive = true
-        self.searchBar.topAnchor.constraint(equalTo: self.logoTitle.bottomAnchor, constant: 20).isActive = true
+        self.searchBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12).isActive = true
+        self.searchBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -12).isActive = true
+        self.searchBar.topAnchor.constraint(equalTo: self.logoTitle.bottomAnchor, constant: 15).isActive = true
         self.searchBar.heightAnchor.constraint(equalToConstant: 36).isActive = true
         self.searchBar.clipsToBounds = true
-        self.searchBar.setupCornerRadius(10, maskedCorners: .layerMaxXMaxYCorner)
+        //self.searchBar.setupCornerRadius(10, maskedCorners: .layerMaxXMaxYCorner)
         self.searchBar.layer.borderColor = UIColor.clear.cgColor
-        self.searchBar.backgroundColor = .gray
-        
+        let emptyImage = UIImage()
+        self.searchBar.setImage(emptyImage, for: .search, state: .normal)
+        self.searchBar.backgroundColor = .clear
+        self.searchBar.searchTextField.backgroundColor = .lightGray.withAlphaComponent(0.2)
+        self.searchBar.searchTextField.layer.cornerRadius = 10
+        self.searchBar.layer.cornerRadius = 10
+        self.searchBar.layer.borderWidth = 0
+        self.searchBar.layer.borderColor = UIColor.clear.cgColor
+        //TODO: 죽어도 사라지지 않는 경계선
+        self.searchBar.searchTextField.font = UIFont.systemFont(ofSize: 14, weight: .light)
     }
     
     func bindFilters(){
@@ -100,7 +108,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
             cell.configureDesign(imageName: designString[0], title: designString[1])
             cell.layer.cornerRadius = 20
             if (designString[1] == "전체"){
-                cell.isSelected = true
+                //시작은 전체부터 보여줌. 
+                self.filterCollectionView.selectItem(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .top)
             }
         }
         .disposed(by: bag)
@@ -119,12 +128,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
         filterCollectionView.showsHorizontalScrollIndicator = false
         filterCollectionView.backgroundColor = .clear
         filterCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        filterCollectionView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor, constant: 10).isActive = true
+        filterCollectionView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor).isActive = true
         filterCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24).isActive = true
         filterCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         filterCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         filterCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-        //TODO: 아마 insets 안될거임.
     }
     
     func configureListCollectionView(){
@@ -134,13 +142,39 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
         self.dividerBottom.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         self.dividerBottom.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         self.dividerBottom.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        self.dividerBottom.topAnchor.constraint(equalTo: self.filterCollectionView.bottomAnchor).isActive = true
+        self.dividerBottom.topAnchor.constraint(equalTo: self.filterCollectionView.bottomAnchor, constant: 5).isActive = true
         
         self.topsCollectionView.view.frame = CGRect(x: 24, y: 300, width: self.view.frame.width-48, height: self.view.frame.height)
     }
     
     func configureTopCollectionView(){
         
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(origin: .zero, size: newSize)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
     
     

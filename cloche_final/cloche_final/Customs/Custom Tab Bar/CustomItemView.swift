@@ -52,7 +52,7 @@ final class CustomItemView: UIView {
         
         iconImageView.snp.makeConstraints {
             $0.width.equalTo(24)
-            $0.height.equalTo(20.2)
+            $0.height.equalTo(22)
             $0.top.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.centerX.centerY.equalToSuperview()
