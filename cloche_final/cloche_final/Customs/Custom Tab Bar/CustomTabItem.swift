@@ -23,12 +23,16 @@ extension CustomTabItem {
             return OutfitViewController(item: .outfit)
         case .add:
             return AddViewController(item: .add)
+            //TODO: change this into a menu button
         case .favorite:
             return FavoritesViewController(item: .favorite)
         case .profile:
             return ProfileViewController(item: .profile)
         }
     }
+    
+    
+    
     
     var icon: UIImage? {
         switch self {

@@ -60,10 +60,17 @@ class TopsCollectionViewController: UIViewController, UICollectionViewDelegateFl
         }
         .disposed(by: bag)
         
+        self.topListView.rx.modelSelected(Item.self)
+                   .subscribe(onNext: { item in
+                   let VC = ItemDetailViewController(item: item)
+                   self.navigationController?.pushViewController(VC, animated: true)
+                   })
+                   .disposed(by: bag)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width-24)/2,  height: 240)
+        return CGSize(width: (collectionView.frame.width-24)/3,  height: 125)
     }
     
     let sampleItemList =

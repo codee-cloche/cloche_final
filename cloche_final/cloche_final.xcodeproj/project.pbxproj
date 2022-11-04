@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		65728BE829121E1B004504D6 /* UNDERRATED.otf in Resources */ = {isa = PBXBuildFile; fileRef = 65728BE729121E0E004504D6 /* UNDERRATED.otf */; };
 		65728BEA291232CE004504D6 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65728BE9291232CE004504D6 /* ItemDetailViewController.swift */; };
+		65728BEC29124143004504D6 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65728BEB29124143004504D6 /* AddItemViewController.swift */; };
+		65728BEE2912414E004504D6 /* AddOutfitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65728BED2912414E004504D6 /* AddOutfitViewController.swift */; };
+		65728BF029134A4B004504D6 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65728BEF29134A4B004504D6 /* CustomSegmentedControl.swift */; };
 		65817DE4290F979B0099ED84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65817DE3290F979B0099ED84 /* AppDelegate.swift */; };
 		65817DE6290F979B0099ED84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65817DE5290F979B0099ED84 /* SceneDelegate.swift */; };
 		65817DE8290F979B0099ED84 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65817DE7290F979B0099ED84 /* CustomTabBarController.swift */; };
@@ -45,6 +48,9 @@
 		55C3E92FB874AE4D320F1B9D /* Pods_cloche_final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cloche_final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65728BE729121E0E004504D6 /* UNDERRATED.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = UNDERRATED.otf; sourceTree = "<group>"; };
 		65728BE9291232CE004504D6 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		65728BEB29124143004504D6 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		65728BED2912414E004504D6 /* AddOutfitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutfitViewController.swift; sourceTree = "<group>"; };
+		65728BEF29134A4B004504D6 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		65817DE0290F979B0099ED84 /* cloche_final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cloche_final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65817DE3290F979B0099ED84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65817DE5290F979B0099ED84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +113,30 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		65728BF3291390AA004504D6 /* Items Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				65817E11290FA30B0099ED84 /* allItemsCollectionViewController.swift */,
+				65817E13290FA31A0099ED84 /* OuterCollectionViewController.swift */,
+				65817E15290FA32A0099ED84 /* TopsCollectionViewController.swift */,
+				65817E17290FA33C0099ED84 /* BottomsCollectionViewController.swift */,
+				65817E19290FA3430099ED84 /* DressCollectionViewController.swift */,
+				65817E1B290FA3520099ED84 /* ShoesCollectionViewController.swift */,
+				65817E1D290FA35C0099ED84 /* AccessoriesCollectionViewController.swift */,
+			);
+			path = "Items Collection View";
+			sourceTree = "<group>";
+		};
+		65728BF7291390F1004504D6 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				65728BEB29124143004504D6 /* AddItemViewController.swift */,
+				65728BED2912414E004504D6 /* AddOutfitViewController.swift */,
+				65817E09290F9A090099ED84 /* AddViewController.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
 		65817DD7290F979B0099ED84 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +175,7 @@
 		65817DF7290F97B70099ED84 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				65728BE9291232CE004504D6 /* ItemDetailViewController.swift */,
 				65817E10290FA2F00099ED84 /* Collection Views  */,
 				65817DFA290F97CC0099ED84 /* Extras */,
 				65817DF9290F97C80099ED84 /* Main  */,
@@ -157,6 +188,7 @@
 			children = (
 				65817E24290FE8D50099ED84 /* Custom Fonts */,
 				65817DFB290F98E10099ED84 /* Custom Tab Bar */,
+				65728BEF29134A4B004504D6 /* CustomSegmentedControl.swift */,
 			);
 			path = Customs;
 			sourceTree = "<group>";
@@ -164,12 +196,11 @@
 		65817DF9290F97C80099ED84 /* Main  */ = {
 			isa = PBXGroup;
 			children = (
+				65728BF7291390F1004504D6 /* Add */,
 				65817E05290F99EF0099ED84 /* HomeViewController.swift */,
 				65817E07290F99FA0099ED84 /* OutfitViewController.swift */,
-				65817E09290F9A090099ED84 /* AddViewController.swift */,
 				65817E0B290F9A130099ED84 /* FavoritesViewController.swift */,
 				65817E0E290F9A210099ED84 /* ProfileViewController.swift */,
-				65728BE9291232CE004504D6 /* ItemDetailViewController.swift */,
 			);
 			path = "Main ";
 			sourceTree = "<group>";
@@ -196,13 +227,7 @@
 		65817E10290FA2F00099ED84 /* Collection Views  */ = {
 			isa = PBXGroup;
 			children = (
-				65817E11290FA30B0099ED84 /* allItemsCollectionViewController.swift */,
-				65817E13290FA31A0099ED84 /* OuterCollectionViewController.swift */,
-				65817E15290FA32A0099ED84 /* TopsCollectionViewController.swift */,
-				65817E17290FA33C0099ED84 /* BottomsCollectionViewController.swift */,
-				65817E19290FA3430099ED84 /* DressCollectionViewController.swift */,
-				65817E1B290FA3520099ED84 /* ShoesCollectionViewController.swift */,
-				65817E1D290FA35C0099ED84 /* AccessoriesCollectionViewController.swift */,
+				65728BF3291390AA004504D6 /* Items Collection View */,
 			);
 			path = "Collection Views ";
 			sourceTree = "<group>";
@@ -365,7 +390,9 @@
 				65817DFD290F98F20099ED84 /* CustomItemView.swift in Sources */,
 				65817E1C290FA3520099ED84 /* ShoesCollectionViewController.swift in Sources */,
 				65817E18290FA33C0099ED84 /* BottomsCollectionViewController.swift in Sources */,
+				65728BEC29124143004504D6 /* AddItemViewController.swift in Sources */,
 				65817E08290F99FA0099ED84 /* OutfitViewController.swift in Sources */,
+				65728BF029134A4B004504D6 /* CustomSegmentedControl.swift in Sources */,
 				65817E312910DAA10099ED84 /* Item.swift in Sources */,
 				65817DE8290F979B0099ED84 /* CustomTabBarController.swift in Sources */,
 				65817DFF290F990E0099ED84 /* CustomTabItem.swift in Sources */,
@@ -375,6 +402,7 @@
 				65817E1E290FA35C0099ED84 /* AccessoriesCollectionViewController.swift in Sources */,
 				65817E12290FA30B0099ED84 /* allItemsCollectionViewController.swift in Sources */,
 				65817E16290FA32A0099ED84 /* TopsCollectionViewController.swift in Sources */,
+				65728BEE2912414E004504D6 /* AddOutfitViewController.swift in Sources */,
 				65817E21290FA4650099ED84 /* ItemListCollectionViewCell.swift in Sources */,
 				65817E23290FA46F0099ED84 /* FilterListCollectionViewCell.swift in Sources */,
 				65817E1A290FA3430099ED84 /* DressCollectionViewController.swift in Sources */,
