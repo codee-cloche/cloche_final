@@ -75,7 +75,7 @@ class TopsCollectionViewController: UIViewController, UICollectionViewDelegateFl
     
     let sampleItemList =
         [
-            Item(id: 1, imagePath: "top0", name: "긴팔", category: "top", color: UIColor.blue, tags: ["#가을"], details: "이뻐!", liked: false),
+            Item(id: 1, imagePath: "top0", name: "팔로마울 매쉬 긴팔 탑", category: "top", color: UIColor.blue, tags: ["#가을", "#팔로마울", "#메쉬", "#유니크"], details: "사이즈 M임. 아 왜 사이즈 넣을 생각 안했지?", liked: false),
             Item(id: 2, imagePath: "top1", name: "반팔", category: "top", color: UIColor.gray, tags: ["#유니크"], details: nil, liked: false),
             Item(id: 3, imagePath: "top2", name: "나시", category: "top", color: UIColor.yellow, tags: ["#여름"], details: "2번 입은 듯", liked: false)
         ]
