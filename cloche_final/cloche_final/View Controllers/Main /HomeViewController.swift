@@ -74,24 +74,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     }
     
     func configureSearchBar(){
-        self.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "👚 색상, 브랜드, 키워드를 검색해보세요! 👚", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light)])
+        
         self.searchBar.translatesAutoresizingMaskIntoConstraints = false
         self.searchBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12).isActive = true
         self.searchBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -12).isActive = true
         self.searchBar.topAnchor.constraint(equalTo: self.logoTitle.bottomAnchor, constant: 15).isActive = true
         self.searchBar.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        
+        self.searchBar.layer.cornerRadius = 15
         self.searchBar.clipsToBounds = true
-        //self.searchBar.setupCornerRadius(10, maskedCorners: .layerMaxXMaxYCorner)
-        self.searchBar.layer.borderColor = UIColor.clear.cgColor
+
         let emptyImage = UIImage()
         self.searchBar.setImage(emptyImage, for: .search, state: .normal)
-        self.searchBar.backgroundColor = .clear
-        self.searchBar.searchTextField.backgroundColor = .lightGray.withAlphaComponent(0.2)
-        self.searchBar.searchTextField.layer.cornerRadius = 10
-        self.searchBar.layer.cornerRadius = 10
-        self.searchBar.layer.borderWidth = 0
+        self.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "👚 색상, 브랜드, 키워드를 검색해보세요! 👚", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light)])
+        self.searchBar.searchTextField.textColor = .black
         self.searchBar.layer.borderColor = UIColor.clear.cgColor
-        //TODO: 죽어도 사라지지 않는 경계선
+        self.searchBar.tintColor = .clear
+        
         self.searchBar.searchTextField.font = UIFont.systemFont(ofSize: 14, weight: .light)
     }
     
@@ -181,16 +180,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     
 let categories =
     [
-    //image set name + TEXT TO show
-    //total of 6 categories
+        
+    //total of 5 categories
      ["top0","전체"],
      ["top1", "상의"],
      ["bottom0", "하의"],
      ["outwear1", "아우터"],
-     ["bottom1", "원피스"],
-     ["shoes1", "신발"],
-     ["bag0", "악세서리"]
-     
+     ["dress0", "원피스"],
+     ["shoes1", "기타"],
     ]
 
 
