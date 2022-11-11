@@ -15,12 +15,13 @@ struct Item {
     //TODO: should cateogry be a struct of itself?
     
     let id: Int
-    let imagePath : String?
-    let name : String
-    let category: String
-    let color : UIColor?
-    let tags : [String]?
-    let details : String?
-    let liked : Bool
+    var imagePath : String?
+    var name : String
+    var category: String
+    var color : UIColor?
+    var tags : [String]?
+    var details : String?
+    var liked : Bool
+    var timesWorn: Int = 0
 }
 
