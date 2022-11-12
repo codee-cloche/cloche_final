@@ -40,6 +40,7 @@
 		65817E312910DAA10099ED84 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65817E302910DAA00099ED84 /* Item.swift */; };
 		65817E332910DAA80099ED84 /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65817E322910DAA80099ED84 /* Outfit.swift */; };
 		65817E362910E0FD0099ED84 /* Liked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65817E352910E0FD0099ED84 /* Liked.swift */; };
+		659A16BF291F488D00180AFB /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A16BE291F488D00180AFB /* EditItemViewController.swift */; };
 		AF8D4E1169EE88A497EF2CE3 /* Pods_cloche_final.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C3E92FB874AE4D320F1B9D /* Pods_cloche_final.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		65817E302910DAA00099ED84 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		65817E322910DAA80099ED84 /* Outfit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
 		65817E352910E0FD0099ED84 /* Liked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liked.swift; sourceTree = "<group>"; };
+		659A16BE291F488D00180AFB /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		DB53B22179F3B03F5871823C /* Pods-cloche_final.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cloche_final.debug.xcconfig"; path = "Target Support Files/Pods-cloche_final/Pods-cloche_final.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +198,7 @@
 		65817DF9290F97C80099ED84 /* Main  */ = {
 			isa = PBXGroup;
 			children = (
+				659A16BD291F487A00180AFB /* Edit */,
 				65728BF7291390F1004504D6 /* Add */,
 				65817E05290F99EF0099ED84 /* HomeViewController.swift */,
 				65817E07290F99FA0099ED84 /* OutfitViewController.swift */,
@@ -266,6 +269,14 @@
 				65817E352910E0FD0099ED84 /* Liked.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		659A16BD291F487A00180AFB /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				659A16BE291F488D00180AFB /* EditItemViewController.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,6 +412,7 @@
 				65817E0C290F9A130099ED84 /* FavoritesViewController.swift in Sources */,
 				65817E1E290FA35C0099ED84 /* AccessoriesCollectionViewController.swift in Sources */,
 				65817E12290FA30B0099ED84 /* allItemsCollectionViewController.swift in Sources */,
+				659A16BF291F488D00180AFB /* EditItemViewController.swift in Sources */,
 				65817E16290FA32A0099ED84 /* TopsCollectionViewController.swift in Sources */,
 				65728BEE2912414E004504D6 /* AddOutfitViewController.swift in Sources */,
 				65817E21290FA4650099ED84 /* ItemListCollectionViewCell.swift in Sources */,

@@ -54,20 +54,48 @@ class ItemDetailViewController: UIViewController {
         exportButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         let editRightButton = UIBarButtonItem(customView: editButton)
         let exportRightButton = UIBarButtonItem(customView: exportButton)
-        editButton.showsMenuAsPrimaryAction = true
-        editButton.menu = UIMenu(children: [
+        //editButton.showsMenuAsPrimaryAction = true
+        /*editButton.menu = UIMenu(children: [
             UIAction(title: "수정", handler: { action in
                 print("edit")
             }),
             UIAction(title: "삭제", handler: { action in
                 print("delete")
             })
-        ])
+        ])*/
+        editButton.addTarget(self, action: #selector(displayActionSheet(_:)), for: .touchUpInside)
         //change to ui alert controller in swift 
         self.navigationItem.setRightBarButtonItems([editRightButton , exportRightButton], animated: true)
         self.view.backgroundColor = .white
         addSubviews()
         configureDesign()
+    }
+    
+    @objc func displayActionSheet(_ sender: Any) {
+         
+        // 1
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+        // 2
+        //let editAction = UIAlertAction(title: "아이템 수정", style: .default)
+        let editAction = UIAlertAction(title: "아이템 수정", style: .default, handler: { (UIAlertAction) in
+            let VC = EditItemViewController(item: self.my_item)
+            self.navigationController?.pushViewController(VC, animated: true)
+        })
+       
+        let deleteAction = UIAlertAction(title: "삭제", style: .default)
+        deleteAction.setValue(UIColor.red, forKey: "titleTextColor")
+            
+        // 3
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+            
+        // 4
+        optionMenu.addAction(editAction)
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(cancelAction)
+            
+        // 5
+        self.present(optionMenu, animated: true, completion: nil)
     }
     
     
