@@ -75,7 +75,9 @@ class EditItemViewController: UIViewController {
         }
     
     @objc func saveItem(){
-        
+        //fields to change --> 일단은 textfields..생각해보니까 photo 는 UIImage 형태로 주고 받아야할듯싶다.
+        //이거 관리하는 database 어떻게 만들지?
+        self.navigationController?.popViewController(animated: true)
     }
     
     func addSubviews(){
@@ -231,6 +233,7 @@ class EditItemViewController: UIViewController {
                 color_button.centerYAnchor.constraint(equalTo: colorLabel.centerYAnchor).isActive = true
                 color_button.widthAnchor.constraint(equalToConstant: 25).isActive = true
                 color_button.heightAnchor.constraint(equalToConstant: 25).isActive = true
+                color_button.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
                 //colorButtons.append(color_button)
             }
             
@@ -249,6 +252,23 @@ class EditItemViewController: UIViewController {
             underLine3.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -48).isActive = true
             underLine3.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
         }
+    
+    @objc func showColorPicker(){
+        //TODO: 색상 하나 선택하는거 치고 너무 과대한 거 아닐까?
+        //그리고 나중에 색상별 검색을 도입하려면 많아지는건 오바임. 팔레트만 가능하게 하자.
+        let picker = UIColorPickerViewController()
+        picker.title = "아이템 색상"
+
+        // Setting the Initial Color of the Picker
+        //change blue to color
+        picker.selectedColor = .blue
+
+        // Setting Delegate
+        picker.delegate = self
+
+        // Presenting the Color Picker
+        self.present(picker, animated: true, completion: nil)
+    }
         
         func configureTagField(){
             //TODO: make the textfield parse the text with # or space
@@ -301,5 +321,17 @@ class EditItemViewController: UIViewController {
             underLine5.topAnchor.constraint(equalTo: self.detailField.bottomAnchor).isActive = true
             underLine5.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -48).isActive = true
             underLine5.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        }
+}
+
+extension EditItemViewController : UIColorPickerViewControllerDelegate {
+    //  Called once you have finished picking the color.
+        func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+            //self.colorLabel.backgroundColor = viewController.selectedColor
+        }
+        
+        //  Called on every color selection done in the picker.
+        func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+            //self.colorLabel.backgroundColor = viewController.selectedColor
         }
 }

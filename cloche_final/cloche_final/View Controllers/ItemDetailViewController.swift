@@ -83,7 +83,10 @@ class ItemDetailViewController: UIViewController {
             self.navigationController?.pushViewController(VC, animated: true)
         })
        
-        let deleteAction = UIAlertAction(title: "삭제", style: .default)
+        let deleteAction = UIAlertAction(title: "삭제", style: .default, handler: { (UIAlertAction) in
+            print("delete item")
+        })
+        
         deleteAction.setValue(UIColor.red, forKey: "titleTextColor")
             
         // 3
@@ -286,9 +289,11 @@ class ItemDetailViewController: UIViewController {
         self.tabBar.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         self.tabBar.addArrangedSubviews([likeButton, usetoOutfitButton, wearButton])
         self.tabBar.alignment = .center
-        
-       
-        
-        
+    }
+    
+    @objc func tappedWear(){
+        self.my_item.timesWorn += 1;
+        print("worn once more!")
+        //todo: should make like a gif or alert to show!
     }
 }
