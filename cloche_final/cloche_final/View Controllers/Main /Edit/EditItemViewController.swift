@@ -37,6 +37,7 @@ class EditItemViewController: UIViewController {
     
     
     init(item: Item){
+        
         self.my_item = item
         self.outfitTitleField.text = item.name
         self.categoryButton.setTitle(item.category, for: .normal)
