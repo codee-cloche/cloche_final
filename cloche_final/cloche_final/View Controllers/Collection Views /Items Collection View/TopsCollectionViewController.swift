@@ -46,7 +46,8 @@ class TopsCollectionViewController: UIViewController, UICollectionViewDelegateFl
         self.topListView.rx.setDelegate(self)
             .disposed(by: bag)
         
-        let itemObservable = Observable.of(self.sampleItemList)
+        let itemObservable = Observable.of(TotalItemsState.shared.totalItems)
+        //let itemObservable = Observable.of(self.sampleItemList)
         itemObservable
             .observe(on: MainScheduler.instance)
             .bind(to: self.topListView.rx.items(cellIdentifier: "FilterListCollectionViewCell", cellType: FilterListCollectionViewCell.self))
@@ -55,7 +56,7 @@ class TopsCollectionViewController: UIViewController, UICollectionViewDelegateFl
         
             //bag0 --> give a default top image
             cell.configureDesign(imageName: Item.imagePath ?? "bag0", liked: Item.liked, item: Item)
-            cell.layer.cornerRadius = 15
+            cell.layer.cornerRadius = 10
             
         }
         .disposed(by: bag)

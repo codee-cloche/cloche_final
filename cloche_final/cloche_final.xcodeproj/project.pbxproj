@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650A464F292140850044A911 /* TotalItemsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A464E292140850044A911 /* TotalItemsState.swift */; };
 		65728BE829121E1B004504D6 /* UNDERRATED.otf in Resources */ = {isa = PBXBuildFile; fileRef = 65728BE729121E0E004504D6 /* UNDERRATED.otf */; };
 		65728BEA291232CE004504D6 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65728BE9291232CE004504D6 /* ItemDetailViewController.swift */; };
 		65728BEC29124143004504D6 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65728BEB29124143004504D6 /* AddItemViewController.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		144E4D7F94D10C1F55EF2D63 /* Pods-cloche_final.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cloche_final.release.xcconfig"; path = "Target Support Files/Pods-cloche_final/Pods-cloche_final.release.xcconfig"; sourceTree = "<group>"; };
 		55C3E92FB874AE4D320F1B9D /* Pods_cloche_final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cloche_final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		650A464E292140850044A911 /* TotalItemsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalItemsState.swift; sourceTree = "<group>"; };
 		65728BE729121E0E004504D6 /* UNDERRATED.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = UNDERRATED.otf; sourceTree = "<group>"; };
 		65728BE9291232CE004504D6 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		65728BEB29124143004504D6 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				65817E352910E0FD0099ED84 /* Liked.swift */,
+				650A464E292140850044A911 /* TotalItemsState.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				65817DE4290F979B0099ED84 /* AppDelegate.swift in Sources */,
 				65817E02290F992D0099ED84 /* CustomTabBar.swift in Sources */,
 				65728BEA291232CE004504D6 /* ItemDetailViewController.swift in Sources */,
+				650A464F292140850044A911 /* TotalItemsState.swift in Sources */,
 				65817DE6290F979B0099ED84 /* SceneDelegate.swift in Sources */,
 				65817E332910DAA80099ED84 /* Outfit.swift in Sources */,
 				65817E04290F99490099ED84 /* Extensions.swift in Sources */,

@@ -1,37 +1,37 @@
 //
-//  Liked.swift
+//  TotalItemsState.swift
 //  cloche_final
 //
-//  Created by grace kim  on 2022/11/01.
+//  Created by grace kim  on 2022/11/14.
 //
 
+import RxSwift
 import Foundation
 import UIKit
-import RxSwift
-import RxRelay
+import RxCocoa
 
-class LikedItemsState{
+class TotalItemsState{
     
-    static var shared = LikedItemsState()
+    static var shared = TotalItemsState()
     
     private let defaults = UserDefaults.standard
-    var likedItemsObservable = BehaviorRelay<[Item]>(value: [])
+    var totalItemsObservable = BehaviorRelay<[Item]>(value: [])
     
-    var LikedItems = [Item]() {
+    var totalItems = [Item]() {
         didSet {
             self.getObserver()
-//            self.saveLikedItems()
-            print(self.LikedItems)
+            //self.saveItems()
+            print(self.totalItems)
         }
     }
     
     private func getObserver(){
-        self.likedItemsObservable.accept(LikedItems)
+        self.totalItemsObservable.accept(totalItems)
     }
     
-    private func saveLikedItems(){
+    private func saveItems(){
         //save to user defaults or upload on api.
-        let data = self.LikedItems.map {
+        let data = self.totalItems.map {
             [
                 "id": $0.id,
                 "imagePath": $0.imagePath as Any,
@@ -46,15 +46,15 @@ class LikedItemsState{
         }
         
         let userDefaults = UserDefaults.standard
-        userDefaults.set(data, forKey:  "likedItems")
+        userDefaults.set(data, forKey:  "totalItems")
         
     }
     
-    func loadLikedItems() {
+    func loadtotalItems() {
         let userDefaults = UserDefaults.standard
-        guard let data = userDefaults.object(forKey: "likedItems") as? [[String: Any]] else { return }
+        guard let data = userDefaults.object(forKey: "totalItems") as? [[String: Any]] else { return }
 
-        self.LikedItems = data.compactMap {
+        self.totalItems = data.compactMap {
             guard let id = $0["id"] as? Int else { return nil }
             guard let imagePath = $0["imagePath"] as? String else { return nil }
             guard let name = $0["name"] as? String else { return nil }
@@ -68,16 +68,17 @@ class LikedItemsState{
         }
     }
     
-    func addLikedItem(new_item: Item){
-        if !LikedItems.contains(where: {$0.id == new_item.id}){
-            self.LikedItems.append(new_item)
-        }
+    func addItem(new_item: Item){
+        self.totalItems.append(new_item)
+        //if !totalItems.contains(where: {$0.id == new_item.id}){
+           // self.totalItems.append(new_item)
+        //}
     }
     
-    func deleteLikedItem(new_item: Item){
-        if LikedItems.contains(where: {$0.id == new_item.id}){
-            let index = LikedItems.firstIndex(where: {$0.id == new_item.id})!
-            self.LikedItems.remove(at: index)
+    func deleteItem(new_item: Item){
+        if totalItems.contains(where: {$0.id == new_item.id}){
+            let index = totalItems.firstIndex(where: {$0.id == new_item.id})!
+            self.totalItems.remove(at: index)
         }
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class AddItemViewController: UIViewController, UITextFieldDelegate {
 
+    let totalItems = TotalItemsState.shared
     
     var titleLabel = UILabel()
     var outfitTitleField = UITextField()
@@ -19,6 +20,8 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
         
     var categoryLabel = UILabel()
     var categoryButton = UIButton()
+    var category = "아우터"
+    //todo: change category into class
     var underLine2 = UILabel()
     //category button text should change depending on model
         
@@ -26,6 +29,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
     var colorView = UIStackView()
     var underLine3 = UILabel()
     var colors_count = 5
+    var color = UIColor.clear
     //color button color should change depending on model
         
     var tagLabel = UILabel()
@@ -53,7 +57,25 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
         }
     
     @objc func saveItem(){
+        let id = 0
+        let imagePath = "bottom1"
         
+        guard let name = self.outfitTitleField.text ?? self.outfitTitleField.placeholder else {
+            return
+        }
+        
+        let category = self.category
+        let color = self.color
+        let tags = ["tag", "tag"]
+        //tagField.text?.components(separatedBy: " ") ?? []
+        let details = detailField.text ?? ""
+        let liked = false
+        let timesWorn = 0
+        
+       let newItem = Item(id: id, imagePath: imagePath, name: name, category: category, color: color, tags: tags, details: details, liked: liked, timesWorn: timesWorn)
+        
+        totalItems.addItem(new_item: newItem)
+        self.navigationController?.popViewController(animated: true)
     }
         
         func addSubviews(){
@@ -172,18 +194,23 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
             categoryButton.menu = UIMenu(children: [
                 UIAction(title: "아우터", handler: { action in
                     self.setAttributedTitle(title: "아우터")
+                    self.category = "아우터"
                 }),
                 UIAction(title: "상의", handler: { action in
                     self.setAttributedTitle(title: "상의")
+                    self.category = "상의"
                 }),
                 UIAction(title: "하의", handler: { action in
                     self.setAttributedTitle(title: "하의")
+                    self.category = "하의"
                 }),
                 UIAction(title: "원피스", handler: { action in
                     self.setAttributedTitle(title: "원피스")
+                    self.category = "원피스"
                 }),
                 UIAction(title: "기타", handler: { action in
                     self.setAttributedTitle(title: "기타")
+                    self.category = "기타"
                 })
             ])
             
@@ -349,6 +376,7 @@ extension AddItemViewController: UIColorPickerViewControllerDelegate {
     //  Called once you have finished picking the color.
         func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
             let add_color = UIButton()
+            self.color = viewController.selectedColor
             self.colorView.addSubview(add_color)
             add_color.layer.backgroundColor = viewController.selectedColor.cgColor
             add_color.titleLabel?.textAlignment = .center
@@ -365,5 +393,6 @@ extension AddItemViewController: UIColorPickerViewControllerDelegate {
         //  Called on every color selection done in the picker.
         func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
             //self.colorLabel.backgroundColor = viewController.selectedColor
+            self.color = viewController.selectedColor
         }
 }

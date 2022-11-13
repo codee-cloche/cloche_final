@@ -31,9 +31,14 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
 
+       
         
     }
 
-   
+    
+    @objc func didTapAddItem(){
+        let VC = AddItemViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
 
 }

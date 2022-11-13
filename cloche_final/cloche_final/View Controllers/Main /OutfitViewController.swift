@@ -30,6 +30,9 @@ class OutfitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+       
         self.view.backgroundColor = .white
         self.view.addSubview(titleLabel)
         self.view.addSubview(searchBar)
@@ -41,6 +44,11 @@ class OutfitViewController: UIViewController {
         configureListCollectionView()
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func didTapAddItem(){
+        let VC = AddItemViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func configureHeaders(){

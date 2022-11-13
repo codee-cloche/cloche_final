@@ -57,6 +57,16 @@ final class CustomTabBar: UIStackView {
         backgroundColor = .white
         setupCornerRadius(25)
         
+        self.addItem.showsMenuAsPrimaryAction = true
+        self.addItem.menu = UIMenu(children: [
+            UIAction(title: "아이템 추가", handler: { action in
+                NotificationCenter.default.post(name: NSNotification.Name("addItem"), object: nil)
+            }),
+            UIAction(title: "조합 추가", handler: { action in
+                NotificationCenter.default.post(name: NSNotification.Name("addItem"), object: nil)
+            })
+        ])
+        
         customItemViews.forEach {
             //TODO: make the bottom text show
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -101,15 +111,6 @@ final class CustomTabBar: UIStackView {
             .when(.recognized)
             .bind { [weak self] _ in
                 guard let self = self else {return}
-                self.addItem.showsMenuAsPrimaryAction = true
-                self.addItem.menu = UIMenu(children: [
-                    UIAction(title: "아이템 추가", handler: { action in
-                        NotificationCenter.default.post(name: NSNotification.Name("addItem"), object: nil)
-                    }),
-                    UIAction(title: "조합 추가", handler: { action in
-                        NotificationCenter.default.post(name: NSNotification.Name("addItem"), object: nil)
-                    })
-                ])
                 
                 self.addItem.isSelected = true
                 UIView.transition(with: self.addItem,

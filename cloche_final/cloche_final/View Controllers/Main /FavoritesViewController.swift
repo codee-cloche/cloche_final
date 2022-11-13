@@ -22,11 +22,16 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         // Do any additional setup after loading the view.
     }
     
-
+    
+    @objc func didTapAddItem(){
+        let VC = AddItemViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
     /*
     // MARK: - Navigation
 
