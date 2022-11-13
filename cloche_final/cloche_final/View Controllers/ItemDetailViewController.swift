@@ -7,9 +7,11 @@
 
 import UIKit
 import RxSwift
+import RxGesture
 
 class ItemDetailViewController: UIViewController {
 
+    let disposeBag = DisposeBag()
     var my_item : Item
     
     var image = UIImageView()
@@ -264,6 +266,27 @@ class ItemDetailViewController: UIViewController {
         likeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         likeButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         likeButton.clipsToBounds = true
+        self.likeButton.tintColor = .black
+        self.likeButton.rx.tapGesture()
+            .when(.recognized)
+            .bind { [weak self] _ in
+                guard let self = self else { return }
+                self.likeButton.animateClick {
+                    let liked = self.my_item.liked
+                    if (!liked) {
+                        LikedItemsState.shared.addLikedItem(new_item: self.my_item)
+                        self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                        self.likeButton.tintColor = .black
+                    } else {
+                        print("liked item")
+                        LikedItemsState.shared.deleteLikedItem(new_item: self.my_item)
+                        self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                        self.likeButton.tintColor = .black
+                    }
+                    self.my_item.liked = !liked
+                }
+            }
+            .disposed(by: disposeBag)
         
         
         let titleString = NSAttributedString(string: "조합으로 만들기", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .medium)])
@@ -284,6 +307,25 @@ class ItemDetailViewController: UIViewController {
         wearButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         wearButton.layer.cornerRadius = 10
         wearButton.clipsToBounds = true
+        self.wearButton.rx.tapGesture()
+            .when(.recognized)
+            .bind { [weak self] _ in
+                guard let self = self else { return }
+                self.wearButton.animateClick {
+                    print("입기 +1")
+                    self.my_item.timesWorn += 1
+                    //TODO: change into floating +1 by floater
+                    let titleString2 = NSAttributedString(string: "+1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .bold)])
+                    self.wearButton.setAttributedTitle(titleString2, for: .normal)
+                    let seconds = 1.0
+                    DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                        // Put your code which should be executed with a delay here
+                        let titleString2 = NSAttributedString(string: "입기", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .medium)])
+                        self.wearButton.setAttributedTitle(titleString2, for: .normal)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
         
         self.tabBar.isLayoutMarginsRelativeArrangement = true
         self.tabBar.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)

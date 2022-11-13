@@ -25,7 +25,7 @@ class AddViewController: UIViewController {
     
     
     /*
-     //TODO: should be a menu button 
+     //TODO: should be a menu button
     var menuButton : UIButton {
         let button = UIButton()
         let addItem = UIAction(title: "아이템 추가하기", image: UIImage(systemName: "c.circle")) { (action) in
@@ -52,14 +52,14 @@ class AddViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         addSubviews()
         configureSegmentedControl()
-        // Do any additional setup after loading the view.
+        configureSaveButton()
         }
         
     func addSubviews(){
         self.view.addSubview(segmentedContol)
         self.view.addSubview(saveButton)
-        configureSave()
-         self.add(addItemsView)
+        
+        self.add(addItemsView)
         self.addItemsView.view.frame = CGRect(x: 0, y: 120, width: self.view.frame.width, height: self.view.frame.height)
         self.add(addOutfitView)
         self.addOutfitView.view.frame = CGRect(x: 0, y: 120, width: self.view.frame.width, height: self.view.frame.height)
@@ -90,10 +90,11 @@ class AddViewController: UIViewController {
         }
     }
     
-    func configureSave(){
+    func configureSaveButton(){
         self.saveButton.setTitle("저장", for: .normal)
         self.saveButton.tintColor = .black
         self.saveButton.translatesAutoresizingMaskIntoConstraints = false
+        self.saveButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 100).isActive = true
         self.saveButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -24).isActive = true
         self.saveButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         self.saveButton.topAnchor.constraint(equalTo: self.segmentedContol.topAnchor).isActive = true

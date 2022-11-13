@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddItemViewController: UIViewController {
+class AddItemViewController: UIViewController, UITextFieldDelegate {
 
     
     var titleLabel = UILabel()
@@ -15,7 +15,6 @@ class AddItemViewController: UIViewController {
     var underLine1 = UILabel()
         
     var itemChooseLabel = UILabel()
-    //var itemChooseView = UICollectionView()
     var itemChooseView = UIView()
         
     var categoryLabel = UILabel()
@@ -26,6 +25,7 @@ class AddItemViewController: UIViewController {
     var colorLabel = UILabel()
     var colorView = UIStackView()
     var underLine3 = UILabel()
+    var colors_count = 5
     //color button color should change depending on model
         
     var tagLabel = UILabel()
@@ -89,11 +89,11 @@ class AddItemViewController: UIViewController {
         func configureOutfitTitleField(){
             titleLabel.text = "아이템명"
             titleLabel.textColor = .black
-            titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
             titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
             titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24).isActive = true
-            outfitTitleField.attributedPlaceholder = NSAttributedString(string: "Item100", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light)])
+            outfitTitleField.attributedPlaceholder = NSAttributedString(string: "Item100", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .light)])
             //TODO: this controller should get num of items and change placeholder.
             outfitTitleField.setLeftPaddingPoints(10)
             
@@ -102,7 +102,7 @@ class AddItemViewController: UIViewController {
             outfitTitleField.layer.masksToBounds = true
             outfitTitleField.borderStyle = .none
             outfitTitleField.textColor = .black
-            outfitTitleField.font = UIFont.systemFont(ofSize: 14, weight: .light)
+            outfitTitleField.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             
             outfitTitleField.translatesAutoresizingMaskIntoConstraints = false
             outfitTitleField.heightAnchor.constraint(equalToConstant: 40).isActive = true
@@ -122,7 +122,7 @@ class AddItemViewController: UIViewController {
         func configureItemChooseLabel(){
             itemChooseLabel.text = "사진 선택"
             itemChooseLabel.textColor = .black
-            itemChooseLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            itemChooseLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
            
             itemChooseLabel.translatesAutoresizingMaskIntoConstraints = false
             itemChooseLabel.topAnchor.constraint(equalTo: self.underLine1.bottomAnchor, constant: 30).isActive = true
@@ -147,16 +147,38 @@ class AddItemViewController: UIViewController {
             //category label, button and line
             categoryLabel.text = "카테고리"
             categoryLabel.textColor = .black
-            categoryLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            categoryLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             categoryLabel.translatesAutoresizingMaskIntoConstraints = false
             categoryLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24).isActive  = true
             categoryLabel.topAnchor.constraint(equalTo: self.itemChooseView.bottomAnchor, constant: 30).isActive = true
+           
+            let category_title = NSAttributedString(string: "아우터", attributes: [
+                .foregroundColor: UIColor.white,
+                .font: UIFont.systemFont(ofSize: 16.0, weight: .semibold)
+            ])
+            categoryButton.setAttributedTitle(category_title, for: .normal)
             
-            categoryButton.setTitle("아우터", for: .normal)
-            categoryButton.setTitleColor(.black, for: .normal)
+            self.categoryButton.showsMenuAsPrimaryAction = true
+            categoryButton.menu = UIMenu(children: [
+                UIAction(title: "아우터", handler: { action in
+                    self.setAttributedTitle(title: "아우터")
+                }),
+                UIAction(title: "상의", handler: { action in
+                    self.setAttributedTitle(title: "상의")
+                }),
+                UIAction(title: "하의", handler: { action in
+                    self.setAttributedTitle(title: "하의")
+                }),
+                UIAction(title: "원피스", handler: { action in
+                    self.setAttributedTitle(title: "원피스")
+                }),
+                UIAction(title: "기타", handler: { action in
+                    self.setAttributedTitle(title: "기타")
+                })
+            ])
+            
             categoryButton.layer.cornerRadius = 8
-            categoryButton.addTarget(self, action: #selector(didTapChangeCategory), for: .touchUpInside)
-            categoryButton.layer.backgroundColor = UIColor(red: 73/255.0, green: 128/255.0, blue: 211/255.0, alpha: 0.5).cgColor
+            categoryButton.layer.backgroundColor = UIColor.black.cgColor
             categoryButton.translatesAutoresizingMaskIntoConstraints = false
             categoryButton.leftAnchor.constraint(equalTo: self.categoryLabel.rightAnchor, constant: 10).isActive = true
             categoryButton.centerYAnchor.constraint(equalTo: self.categoryLabel.centerYAnchor).isActive = true
@@ -172,43 +194,48 @@ class AddItemViewController: UIViewController {
             underLine2.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
         }
         
-        @objc func didTapChangeCategory(){
-            
-        }
+    
+    func setAttributedTitle(title: String){
+        let category_title = NSAttributedString(string: title, attributes: [
+            .foregroundColor: UIColor.white,
+            .font: UIFont.systemFont(ofSize: 16.0, weight: .semibold)
+        ])
+        self.categoryButton.setAttributedTitle(category_title, for: .normal)
+    }
         
         func configureColorField(){
             //color label, buttons, and line
             //TODO: gets an array of colors from models
             colorLabel.text = "색상"
             colorLabel.textColor = .black
-            colorLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            colorLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             colorLabel.translatesAutoresizingMaskIntoConstraints = false
             colorLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24).isActive  = true
             colorLabel.topAnchor.constraint(equalTo: self.underLine2.bottomAnchor, constant: 30).isActive = true
             
-            let colors : [UIColor] = [UIColor(red: 212/255.0, green: 212/255.0, blue: 167/255.0, alpha: 1.0),
-                                      UIColor(red: 175/255.0, green: 174/255.0, blue: 206/255.0, alpha: 1.0),
-                                      UIColor(red: 90/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1.0),]
-            
-            for one_color in colors {
-                let color_button = UIButton()
-                colorView.addSubview(color_button)
-                color_button.layer.backgroundColor = one_color.cgColor
-                color_button.layer.cornerRadius = 8
-                color_button.translatesAutoresizingMaskIntoConstraints = false
-                color_button.centerYAnchor.constraint(equalTo: colorLabel.centerYAnchor).isActive = true
-                color_button.widthAnchor.constraint(equalToConstant: 25).isActive = true
-                color_button.heightAnchor.constraint(equalToConstant: 25).isActive = true
-                color_button.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
-                //colorButtons.append(color_button)
-            }
+    
+            let add_color = UIButton()
+            colorView.addSubview(add_color)
+            add_color.layer.backgroundColor = UIColor.white.cgColor
+            //TODO: fix -- should add buttons not change the first button 
+            add_color.layer.borderColor = UIColor.lightGray.cgColor
+            add_color.layer.borderWidth = 1.0
+            let plus = NSAttributedString(string: "+", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light)])
+            add_color.setAttributedTitle(plus, for: .normal)
+            add_color.titleLabel?.textAlignment = .center
+            add_color.layer.cornerRadius = 5
+            add_color.translatesAutoresizingMaskIntoConstraints = false
+            add_color.centerYAnchor.constraint(equalTo: colorLabel.centerYAnchor).isActive = true
+            add_color.widthAnchor.constraint(equalToConstant: 25).isActive = true
+            add_color.heightAnchor.constraint(equalToConstant: 25).isActive = true
+            add_color.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
             
             colorView.translatesAutoresizingMaskIntoConstraints = false
             colorView.axis = .horizontal
             colorView.distribution = .equalSpacing
-            colorView.leadingAnchor.constraint(equalTo: self.colorLabel.trailingAnchor, constant: 10).isActive = true
+            colorView.leadingAnchor.constraint(equalTo: self.categoryButton.leadingAnchor).isActive = true
             colorView.centerYAnchor.constraint(equalTo: self.colorLabel.centerYAnchor).isActive = true
-            colorView.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat(34*colors.count)).isActive = true
+            colorView.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat(34*colors_count)).isActive = true
             colorView.heightAnchor.constraint(equalToConstant: 24).isActive = true
             
             underLine3.backgroundColor = .clear
@@ -219,15 +246,17 @@ class AddItemViewController: UIViewController {
             underLine3.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
         }
     
-    @objc func showColorPicker(){
+    
+    
+    @objc func showColorPicker(_ button : UIButton){
         //TODO: 색상 하나 선택하는거 치고 너무 과대한 거 아닐까?
-        //그리고 나중에 색상별 검색을 도입하려면 많아지는건 오바임. 팔레트만 가능하게 하자.
+        //그리고 나중에 색상별 검색을 도입하려면 많아지는건 오바임. 팔레트만 가능하게 하자. 언제 고치지...
+
         let picker = UIColorPickerViewController()
         picker.title = "아이템 색상"
 
         // Setting the Initial Color of the Picker
-        //change blue to color
-        picker.selectedColor = .blue
+        picker.selectedColor = button.backgroundColor ?? .white
 
         // Setting Delegate
         picker.delegate = self
@@ -235,12 +264,14 @@ class AddItemViewController: UIViewController {
         // Presenting the Color Picker
         self.present(picker, animated: true, completion: nil)
     }
+    
+    
         
         func configureTagField(){
             //TODO: make the textfield parse the text with # or space
             tagLabel.text = "#태그"
             tagLabel.textColor = .black
-            tagLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            tagLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             tagLabel.translatesAutoresizingMaskIntoConstraints = false
             tagLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24).isActive  = true
             tagLabel.topAnchor.constraint(equalTo: self.underLine3.bottomAnchor, constant: 50).isActive = true
@@ -256,7 +287,7 @@ class AddItemViewController: UIViewController {
             tagField.centerYAnchor.constraint(equalTo: self.tagLabel.centerYAnchor).isActive = true
             tagField.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -48-tagLabel.frame.width).isActive = true
             tagField.textColor = UIColor.systemGray
-            tagField.font = UIFont.systemFont(ofSize: 14, weight: .light)
+            tagField.font = UIFont.systemFont(ofSize: 15, weight: .bold)
             
             underLine4.backgroundColor = .gray
             underLine4.translatesAutoresizingMaskIntoConstraints = false
@@ -269,7 +300,7 @@ class AddItemViewController: UIViewController {
         func configureDetailField(){
             detailField.attributedPlaceholder = NSAttributedString(string: "정보 추가하기", attributes: [
                .foregroundColor: UIColor.systemGray,
-               .font: UIFont.systemFont(ofSize: 14.0)
+               .font: UIFont.systemFont(ofSize: 16.0, weight: .semibold)
                //.font: UIFont.boldSystemFont(ofSize: 16.0)
            ])
            
@@ -277,7 +308,8 @@ class AddItemViewController: UIViewController {
             detailField.autocorrectionType = .no
             detailField.autocapitalizationType = .none
             detailField.borderStyle = .none
-            detailField.textColor = .systemGray
+            detailField.textColor = .black
+            detailField.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             
             detailField.translatesAutoresizingMaskIntoConstraints = false
             detailField.heightAnchor.constraint(equalToConstant: 40).isActive = true
@@ -293,9 +325,12 @@ class AddItemViewController: UIViewController {
             underLine5.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
         }
     
-    func configureSaveCancelButtons(){
-        
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.tagField {
+            
+        }
     }
+    
 
 }
 
@@ -303,7 +338,18 @@ extension AddItemViewController: UIColorPickerViewControllerDelegate {
     
     //  Called once you have finished picking the color.
         func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-            //self.colorLabel.backgroundColor = viewController.selectedColor
+            let add_color = UIButton()
+            self.colorView.addSubview(add_color)
+            add_color.layer.backgroundColor = viewController.selectedColor.cgColor
+            add_color.titleLabel?.textAlignment = .center
+            add_color.layer.cornerRadius = 5
+            add_color.translatesAutoresizingMaskIntoConstraints = false
+            add_color.centerYAnchor.constraint(equalTo: colorLabel.centerYAnchor).isActive = true
+            add_color.widthAnchor.constraint(equalToConstant: 25).isActive = true
+            add_color.heightAnchor.constraint(equalToConstant: 25).isActive = true
+            add_color.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
+            //TODO: should add another button into the stack
+            
         }
         
         //  Called on every color selection done in the picker.

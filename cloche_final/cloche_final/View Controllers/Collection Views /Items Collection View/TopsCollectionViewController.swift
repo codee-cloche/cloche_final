@@ -54,7 +54,7 @@ class TopsCollectionViewController: UIViewController, UICollectionViewDelegateFl
             _, Item, cell in
         
             //bag0 --> give a default top image
-            cell.configureDesign(imageName: Item.imagePath ?? "bag0", liked: Item.liked)
+            cell.configureDesign(imageName: Item.imagePath ?? "bag0", liked: Item.liked, item: Item)
             cell.layer.cornerRadius = 15
             
         }
