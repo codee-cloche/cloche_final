@@ -143,12 +143,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     
     func configureListCollectionView(){
         self.dividerBottom.translatesAutoresizingMaskIntoConstraints = false
-        self.dividerBottom.backgroundColor = .black
+        self.dividerBottom.backgroundColor = .lightGray.withAlphaComponent(0.5)
         self.dividerBottom.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         self.dividerBottom.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         self.dividerBottom.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        self.dividerBottom.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        self.dividerBottom.topAnchor.constraint(equalTo: self.filterCollectionView.bottomAnchor, constant: 5).isActive = true
+        self.dividerBottom.heightAnchor.constraint(equalToConstant: 4).isActive = true
+        self.dividerBottom.topAnchor.constraint(equalTo: self.filterCollectionView.bottomAnchor, constant: 6).isActive = true
         
         self.topsCollectionView.view.frame = CGRect(x: 24, y: 260, width: self.view.frame.width-48, height: self.view.frame.height)
     }

@@ -7,21 +7,24 @@
 
 import UIKit
 
-class AddItemViewController: UIViewController, UITextFieldDelegate {
+class AddItemViewController: UIViewController, UITextFieldDelegate{
 
     let totalItems = TotalItemsState.shared
+    let imagePicker = UIImagePickerController()
     
     var titleLabel = UILabel()
     var outfitTitleField = UITextField()
     var underLine1 = UILabel()
         
+    //MARK: item --> photo..should change name.
     var itemChooseLabel = UILabel()
-    var itemChooseView = UIView()
+    var itemChooseView = UIStackView()
+    var itemAddButton = UIButton()
+    var photoCount = 1
         
     var categoryLabel = UILabel()
     var categoryButton = UIButton()
     var category = "아우터"
-    //todo: change category into class
     var underLine2 = UILabel()
     //category button text should change depending on model
         
@@ -40,6 +43,10 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            self.imagePicker.sourceType = .photoLibrary // 앨범에서 가져옴
+            self.imagePicker.allowsEditing = true // 수정 가능 여부
+            self.imagePicker.delegate = self // picker delegate
+
             
             self.navigationController?.isNavigationBarHidden = false
             self.navigationItem.backButtonTitle = ""
@@ -77,6 +84,10 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
         totalItems.addItem(new_item: newItem)
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @objc func pickImage(){
+           self.present(self.imagePicker, animated: true)
+       }
         
         func addSubviews(){
             
@@ -163,15 +174,25 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
         
         func configureItemChooseView(){
             //should make another table view for this
-            itemChooseView.layer.borderWidth = 0.3
-            itemChooseView.layer.cornerRadius = 8.0
-            itemChooseView.layer.borderColor = UIColor.systemGray.cgColor
+            itemChooseView.axis = .horizontal
             
+            
+            self.itemAddButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
+            self.itemAddButton.setImage(UIImage(systemName: "photo"), for: .normal)
+            self.itemAddButton.tintColor = .lightGray.withAlphaComponent(0.2)
+            self.itemAddButton.backgroundColor = .lightGray.withAlphaComponent(0.2)
+            self.itemAddButton.translatesAutoresizingMaskIntoConstraints = false
+            self.itemAddButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
+            self.itemAddButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+            self.itemAddButton.layer.cornerRadius = 10
+            
+            itemChooseView.addArrangedSubview(itemAddButton)
+        
             itemChooseView.translatesAutoresizingMaskIntoConstraints = false
             itemChooseView.topAnchor.constraint(equalTo: self.itemChooseLabel.bottomAnchor, constant: 10).isActive = true
             itemChooseView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24).isActive = true
-            itemChooseView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-            itemChooseView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -48).isActive = true
+            itemChooseView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+            itemChooseView.widthAnchor.constraint(equalToConstant: CGFloat(70*self.photoCount + 10*(self.photoCount-1))).isActive = true
         }
         
        
@@ -185,7 +206,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
             categoryLabel.topAnchor.constraint(equalTo: self.itemChooseView.bottomAnchor, constant: 30).isActive = true
            
             let category_title = NSAttributedString(string: "아우터", attributes: [
-                .foregroundColor: UIColor.white,
+                .foregroundColor: UIColor.black,
                 .font: UIFont.systemFont(ofSize: 16.0, weight: .semibold)
             ])
             categoryButton.setAttributedTitle(category_title, for: .normal)
@@ -215,7 +236,9 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
             ])
             
             categoryButton.layer.cornerRadius = 8
-            categoryButton.layer.backgroundColor = UIColor.black.cgColor
+            categoryButton.layer.backgroundColor = UIColor.white.cgColor
+            categoryButton.layer.borderColor = UIColor.lightGray.cgColor
+            categoryButton.layer.borderWidth = 0.5
             categoryButton.translatesAutoresizingMaskIntoConstraints = false
             categoryButton.leftAnchor.constraint(equalTo: self.categoryLabel.rightAnchor, constant: 10).isActive = true
             categoryButton.centerYAnchor.constraint(equalTo: self.categoryLabel.centerYAnchor).isActive = true
@@ -234,7 +257,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
     
     func setAttributedTitle(title: String){
         let category_title = NSAttributedString(string: title, attributes: [
-            .foregroundColor: UIColor.white,
+            .foregroundColor: UIColor.black,
             .font: UIFont.systemFont(ofSize: 16.0, weight: .semibold)
         ])
         self.categoryButton.setAttributedTitle(category_title, for: .normal)
@@ -395,4 +418,24 @@ extension AddItemViewController: UIColorPickerViewControllerDelegate {
             //self.colorLabel.backgroundColor = viewController.selectedColor
             self.color = viewController.selectedColor
         }
+}
+
+
+extension AddItemViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        var newImage: UIImage? = nil // update 할 이미지
+        
+        if let possibleImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            newImage = possibleImage // 수정된 이미지가 있을 경우
+        } else if let possibleImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            newImage = possibleImage // 원본 이미지가 있을 경우
+        }
+        
+       
+        self.itemAddButton.setBackgroundImage(newImage, for: .normal)
+        picker.dismiss(animated: true, completion: nil) // picker를 닫아줌
+        
+    }
 }

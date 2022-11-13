@@ -59,10 +59,10 @@ final class CustomTabBar: UIStackView {
         
         self.addItem.showsMenuAsPrimaryAction = true
         self.addItem.menu = UIMenu(children: [
-            UIAction(title: "아이템 추가", handler: { action in
-                NotificationCenter.default.post(name: NSNotification.Name("addItem"), object: nil)
-            }),
             UIAction(title: "조합 추가", handler: { action in
+                print("조합추가")
+            }),
+            UIAction(title: "아이템 추가", handler: { action in
                 NotificationCenter.default.post(name: NSNotification.Name("addItem"), object: nil)
             })
         ])
