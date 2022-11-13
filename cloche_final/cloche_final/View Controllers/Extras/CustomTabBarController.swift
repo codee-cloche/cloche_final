@@ -22,12 +22,15 @@ class CustomTabBarController: UITabBarController {
         setupProperties()
         bind()
         view.layoutIfNeeded()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
     }
+    
+
     
     private func setupHierarchy() {
         view.addSubview(customTabBar)
@@ -51,6 +54,8 @@ class CustomTabBarController: UITabBarController {
         selectedIndex = 0
         let controllers = CustomTabItem.allCases.map { $0.viewController }
         setViewControllers(controllers, animated: true)
+        
+        
     }
 
     private func selectTabWith(index: Int) {

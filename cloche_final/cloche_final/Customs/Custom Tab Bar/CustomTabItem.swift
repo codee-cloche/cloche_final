@@ -9,7 +9,7 @@ import UIKit
 enum CustomTabItem: String, CaseIterable {
     case home
     case outfit
-    case add
+    //case add
     case favorite
     case profile
 }
@@ -21,8 +21,8 @@ extension CustomTabItem {
             return HomeViewController(item: .home)
         case .outfit:
             return OutfitViewController(item: .outfit)
-        case .add:
-            return AddViewController(item: .add)
+            //case .add:
+            //return HomeViewController(item: .home)
             //TODO: change this into a menu button
         case .favorite:
             return FavoritesViewController(item: .favorite)
@@ -30,8 +30,6 @@ extension CustomTabItem {
             return ProfileViewController(item: .profile)
         }
     }
-    
-    
     
     
     var icon: UIImage? {
@@ -42,8 +40,8 @@ extension CustomTabItem {
         case .outfit:
             return UIImage(systemName: "puzzlepiece.extension")?.withTintColor(.black.withAlphaComponent(0.4), renderingMode: .alwaysOriginal)
         
-        case .add:
-            return UIImage(systemName: "plus")?.withTintColor(.black.withAlphaComponent(0.4), renderingMode: .alwaysOriginal)
+        //case .add:
+           //return UIImage(systemName: "plus")?.withTintColor(.black.withAlphaComponent(0.4), renderingMode: .alwaysOriginal)
     
         case .favorite:
             return UIImage(systemName: "heart")?.withTintColor(.black.withAlphaComponent(0.4), renderingMode: .alwaysOriginal)
@@ -62,8 +60,8 @@ extension CustomTabItem {
         case .outfit:
             return UIImage(systemName: "puzzlepiece.extension.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
         
-        case .add:
-            return UIImage(systemName: "plus")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        //case .add:
+            //return UIImage(systemName: "plus")?.withTintColor(.black, renderingMode: .alwaysOriginal)
     
         case .favorite:
             return UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
@@ -74,18 +72,19 @@ extension CustomTabItem {
     }
     
     var name: String {
-        //return self.rawValue.capitalized
         switch self{
         case .home:
             return "클로젯"
         case .outfit:
             return "조합하기"
-        case .add:
-            return "추가하기"
+       // case .add:
+          //  return "추가하기"
         case .favorite:
             return "좋아요"
         case .profile:
             return "마이"
         }
     }
+    
+   
 }

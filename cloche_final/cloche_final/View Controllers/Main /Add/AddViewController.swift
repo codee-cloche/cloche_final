@@ -48,7 +48,7 @@ class AddViewController: UIViewController {
     var saveButton = UIButton()
     
     override func viewDidLoad() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .clear
         self.navigationController?.isNavigationBarHidden = true
         addSubviews()
         configureSegmentedControl()

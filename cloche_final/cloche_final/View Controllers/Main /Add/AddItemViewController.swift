@@ -39,12 +39,22 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
             
             self.navigationController?.isNavigationBarHidden = false
             self.navigationItem.backButtonTitle = ""
-            
-            self.view.backgroundColor = .clear
+            self.navigationItem.title = "아이템 추가"
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: "완료",
+                style: .plain,
+                target: self,
+                action: #selector(saveItem)
+            )
+            self.view.backgroundColor = .white
             addSubviews()
             configureSubViews()
             // Do any additional setup after loading the view.
         }
+    
+    @objc func saveItem(){
+        
+    }
         
         func addSubviews(){
             
@@ -91,7 +101,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
             titleLabel.textColor = .black
             titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+            titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
             titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24).isActive = true
             outfitTitleField.attributedPlaceholder = NSAttributedString(string: "Item100", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .light)])
             //TODO: this controller should get num of items and change placeholder.

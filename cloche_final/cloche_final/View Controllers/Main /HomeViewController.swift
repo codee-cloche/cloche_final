@@ -46,6 +46,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapAddItem), name: NSNotification.Name("addItem"), object: nil)
         self.view.backgroundColor = .white
         self.view.addSubview(logoTitle)
         self.view.addSubview(searchBar)
@@ -61,6 +62,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout {
         configureFilterCollectionView()
         configureListCollectionView()
        
+    }
+    
+    @objc func didTapAddItem(){
+        let VC = AddItemViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func configureHeaders(){
