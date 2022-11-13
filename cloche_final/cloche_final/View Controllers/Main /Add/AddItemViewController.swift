@@ -10,31 +10,33 @@ import UIKit
 class AddItemViewController: UIViewController, UITextFieldDelegate{
 
     let totalItems = TotalItemsState.shared
-    let imagePicker = UIImagePickerController()
     
+    //MARK: title related
     var titleLabel = UILabel()
     var outfitTitleField = UITextField()
     var underLine1 = UILabel()
         
-    //MARK: item --> photo..should change name.
+    //MARK: item --> photo..photo related
+    let imagePicker = UIImagePickerController()
     var itemChooseLabel = UILabel()
     var itemChooseView = UIStackView()
     var itemAddButton = UIButton()
     var photoCount = 1
-        
+    
+    //MARK: category related
     var categoryLabel = UILabel()
     var categoryButton = UIButton()
     var category = "아우터"
     var underLine2 = UILabel()
-    //category button text should change depending on model
-        
+    
+    //MARK: color related
     var colorLabel = UILabel()
     var colorView = UIStackView()
     var underLine3 = UILabel()
     var colors_count = 5
     var color = UIColor.clear
-    //color button color should change depending on model
-        
+    
+    //MARK: tag & detail related
     var tagLabel = UILabel()
     var tagField = UITextField()
     var underLine4 = UIImageView()
@@ -43,6 +45,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate{
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            
             self.imagePicker.sourceType = .photoLibrary // 앨범에서 가져옴
             self.imagePicker.allowsEditing = true // 수정 가능 여부
             self.imagePicker.delegate = self // picker delegate

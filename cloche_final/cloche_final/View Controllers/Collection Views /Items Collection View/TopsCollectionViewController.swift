@@ -46,7 +46,7 @@ class TopsCollectionViewController: UIViewController, UICollectionViewDelegateFl
         self.topListView.rx.setDelegate(self)
             .disposed(by: bag)
         
-        let itemObservable = Observable.of(TotalItemsState.shared.totalItems)
+        let itemObservable = TotalItemsState.shared.totalItemsObservable
         //let itemObservable = Observable.of(self.sampleItemList)
         itemObservable
             .observe(on: MainScheduler.instance)

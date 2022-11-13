@@ -70,9 +70,6 @@ class TotalItemsState{
     
     func addItem(new_item: Item){
         self.totalItems.append(new_item)
-        //if !totalItems.contains(where: {$0.id == new_item.id}){
-           // self.totalItems.append(new_item)
-        //}
     }
     
     func deleteItem(new_item: Item){
